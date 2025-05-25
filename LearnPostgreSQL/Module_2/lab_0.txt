@@ -1,0 +1,23 @@
+Hello teacher and everyone.
+
+In this module, we will learn about views in postgresql
+
+This module includes 7 laboratory sessions that will help us understand 
+how to create, manage, and optimize views in PostgreSQL, as well as 
+explore ther underlying mechanisms.
+
+Here are the seven laboratories:
+
+Lab 1: Understanding what a view is and how it works
+
+Lab 2: Creating and querying simple views 
+
+Lab 3: Modifying and dropping views 
+
+Lab 4: Updatable views and with check option 
+
+Lab 5: Perfomance Considerations (Materialized vs Regular views)
+
+Lab 6: Security and Acces Control Using Views
+
+Lab 7: Advanced topics (Recursive views, Views chaining)
