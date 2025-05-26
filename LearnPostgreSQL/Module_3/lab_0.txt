@@ -1,0 +1,7 @@
+This covers developing and understanding stored functions in PostgreSQL using PL/pgSQL.
+
+Starting from zero, learners will first set up the environment, create basic functions (e.g., hello_world, safe_divide), and explore how PostgreSQL stores and executes these functions at runtime, including parsing, planning, and caching.
+
+Next, we dive into advanced parameter modes (IN, OUT, INOUT), variable declaration and scoping, and memory context management
+
+Finally, we master control-flow constructs (IF, CASE, FOR, FOREACH, WHILE), exception handling for robust error management, and both implicit and explicit cursors for row-by-row processing, all while understanding the underlying PL/pgSQL interpreter mechanics, memory contexts, and execution plans.
