@@ -1,0 +1,29 @@
+What are triggers?
+
+Automatic functions executed before/after specific SQL operations (INSERT/DELETE/UPDATE)
+
+Purpose: Enforce business rules, maintain data integrity, audit changes, automate denormalization.
+
+Pros & Cons of triggers: 
+
+Pros: Automatic data validation, Centralized business rules, Audit trail capabilities 
+
+Cons: Hidden login (Hard to debug), Performance overhead, Transaction locks 
+
+Trigger Syntax and WorkFlow.
+
+-- Step 1: Create trigger FUNCTION
+CREATE OR REPLACE FUNCTION fn_example() 
+RETURNS TRIGGER AS $$
+BEGIN
+  -- Trigger logic here (NEW/OLD access)
+  RETURN NEW; -- Or NULL to abort operation
+END;
+$$ LANGUAGE plpgsql;
+
+-- Step 2: Attach to table
+CREATE TRIGGER tr_example
+BEFORE INSERT ON table_name -- Timing/event
+FOR EACH ROW -- Row-level vs. statement-level
+EXECUTE FUNCTION fn_example();
+
