@@ -15,3 +15,27 @@ Whenever a user wants to learn how a particular operator works on _our_ Berserk 
 ```js
 db.operator_docs.find({ operator: "<OPERATOR_NAME>" })
 
+## Cloning and Importing JSON Data
+
+If you’ve cloned this repo, you already have:
+- `berserk_characters.json`
+- `berserk.operator_docs.json`
+- `README.md`
+
+To import these into your local MongoDB:
+
+1. Open a terminal in this folder (e.g., `Term3/Workshops/june_9`).
+
+2. Run:
+   ```bash
+   mongoimport \
+     --db berserk \
+     --collection characters \
+     --file berserk_characters.json \
+     --jsonArray
+
+   mongoimport \
+     --db berserk \
+     --collection operator_docs \
+     --file berserk.operator_docs.json \
+     --jsonArray
