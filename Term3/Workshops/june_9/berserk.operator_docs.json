@@ -1,0 +1,489 @@
+db.operator_docs.insertMany([
+  {
+    operator: "$eq",
+    purpose: "Find documents where a field is exactly equal to a specified value.",
+    syntax: "db.characters.find({ role: { $eq: \"Captain\" } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f37"),
+        "name": "Casca",
+        "role": "Captain",
+        "age": 24,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 600,
+        "stats": { "strength": 70, "dexterity": 80, "will": 85 },
+        "items": [ "Sword", "Shield" ]
+      }
+    ]
+  },
+  {
+    operator: "$gt",
+    purpose: "Find documents where a numeric field is strictly greater than a given value.",
+    syntax: "db.characters.find({ hp: { $gt: 600 } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f35"),
+        "name": "Guts",
+        "role": "Black Swordsman",
+        "age": 27,
+        "affiliations": [ "Band of the Hawk", "Wyald’s Raiders" ],
+        "hp": 850,
+        "stats": { "strength": 95, "dexterity": 85, "will": 90 },
+        "items": [ "Dragonslayer", "Mechanical Arm" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      }
+    ]
+  },
+  {
+    operator: "$lt",
+    purpose: "Find documents where a numeric field is strictly less than a given value.",
+    syntax: "db.characters.find({ hp: { $lt: 600 } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f38"),
+        "name": "Farnese",
+        "role": "Holy Iron Chain Knight",
+        "age": 22,
+        "affiliations": [ "Holy See" ],
+        "hp": 500,
+        "stats": { "strength": 65, "dexterity": 75, "will": 80 },
+        "items": [ "Flail", "Chainmail Armor" ]
+      }
+    ]
+  },
+  {
+    operator: "$gte_lte",
+    purpose: "Find documents whose numeric field lies within a closed interval (inclusive).",
+    syntax: "db.characters.find({ age: { $gte: 23, $lte: 26 } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f37"),
+        "name": "Casca",
+        "role": "Captain",
+        "age": 24,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 600,
+        "stats": { "strength": 70, "dexterity": 80, "will": 85 },
+        "items": [ "Sword", "Shield" ]
+      }
+    ]
+  },
+  {
+    operator: "$ne",
+    purpose: "Exclude documents where a field has a specific value.",
+    syntax: "db.characters.find({ \"stats.strength\": { $ne: 95 } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f37"),
+        "name": "Casca",
+        "role": "Captain",
+        "age": 24,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 600,
+        "stats": { "strength": 70, "dexterity": 80, "will": 85 },
+        "items": [ "Sword", "Shield" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f38"),
+        "name": "Farnese",
+        "role": "Holy Iron Chain Knight",
+        "age": 22,
+        "affiliations": [ "Holy See" ],
+        "hp": 500,
+        "stats": { "strength": 65, "dexterity": 75, "will": 80 },
+        "items": [ "Flail", "Chainmail Armor" ]
+      }
+    ]
+  },
+  {
+    operator: "$in",
+    purpose: "Match documents where a field’s value (or any element in an array field) is in a specified array.",
+    syntax: "db.characters.find({ items: { $in: [ \"Behelit\", \"Helmet\" ] } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      }
+    ]
+  },
+  {
+    operator: "$nin",
+    purpose: "Match documents where a field’s value (or any element in an array field) is not in a specified array.",
+    syntax: "db.characters.find({ affiliations: { $nin: [ \"Band of the Hawk\" ] } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f38"),
+        "name": "Farnese",
+        "role": "Holy Iron Chain Knight",
+        "age": 22,
+        "affiliations": [ "Holy See" ],
+        "hp": 500,
+        "stats": { "strength": 65, "dexterity": 75, "will": 80 },
+        "items": [ "Flail", "Chainmail Armor" ]
+      }
+    ]
+  },
+  {
+    operator: "$and",
+    purpose: "Match documents that satisfy _all_ of the given sub‐expressions.",
+    syntax: "db.characters.find({ $and: [ { age: { $lt: 25 } }, { affiliations: \"Band of the Hawk\" } ] }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f37"),
+        "name": "Casca",
+        "role": "Captain",
+        "age": 24,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 600,
+        "stats": { "strength": 70, "dexterity": 80, "will": 85 },
+        "items": [ "Sword", "Shield" ]
+      }
+    ]
+  },
+  {
+    operator: "$or",
+    purpose: "Match documents that satisfy _any_ one of the given sub‐expressions.",
+    syntax: "db.characters.find({ $or: [ { hp: { $lt: 600 } }, { \"stats.will\": { $gt: 90 } } ] }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f38"),
+        "name": "Farnese",
+        "role": "Holy Iron Chain Knight",
+        "age": 22,
+        "affiliations": [ "Holy See" ],
+        "hp": 500,
+        "stats": { "strength": 65, "dexterity": 75, "will": 80 },
+        "items": [ "Flail", "Chainmail Armor" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      }
+    ]
+  },
+  {
+    operator: "$not",
+    purpose: "Negate a single condition; match documents where the specified sub‐expression is false.",
+    syntax: "db.characters.find({ affiliations: { $not: { $eq: \"Band of the Hawk\" } } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f38"),
+        "name": "Farnese",
+        "role": "Holy Iron Chain Knight",
+        "age": 22,
+        "affiliations": [ "Holy See" ],
+        "hp": 500,
+        "stats": { "strength": 65, "dexterity": 75, "will": 80 },
+        "items": [ "Flail", "Chainmail Armor" ]
+      }
+    ]
+  },
+  {
+    operator: "$nor",
+    purpose: "Match documents for which none of the specified sub‐expressions is true.",
+    syntax: "db.characters.find({ $nor: [ { hp: { $lt: 600 } }, { hp: { $gt: 800 } } ] }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f37"),
+        "name": "Casca",
+        "role": "Captain",
+        "age": 24,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 600,
+        "stats": { "strength": 70, "dexterity": 80, "will": 85 },
+        "items": [ "Sword", "Shield" ]
+      }
+    ]
+  },
+  {
+    operator: "$exists",
+    purpose: "Match documents where a specified field does (or does not) exist.",
+    syntax: "db.characters.find({ items: { $exists: true } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f35"),
+        "name": "Guts",
+        "role": "Black Swordsman",
+        "age": 27,
+        "affiliations": [ "Band of the Hawk", "Wyald’s Raiders" ],
+        "hp": 850,
+        "stats": { "strength": 95, "dexterity": 85, "will": 90 },
+        "items": [ "Dragonslayer", "Mechanical Arm" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f37"),
+        "name": "Casca",
+        "role": "Captain",
+        "age": 24,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 600,
+        "stats": { "strength": 70, "dexterity": 80, "will": 85 },
+        "items": [ "Sword", "Shield" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f38"),
+        "name": "Farnese",
+        "role": "Holy Iron Chain Knight",
+        "age": 22,
+        "affiliations": [ "Holy See" ],
+        "hp": 500,
+        "stats": { "strength": 65, "dexterity": 75, "will": 80 },
+        "items": [ "Flail", "Chainmail Armor" ]
+      }
+    ]
+  },
+  {
+    operator: "$type",
+    purpose: "Match documents where a field’s BSON data type matches the specified type (e.g. \"int\", \"string\").",
+    syntax: "db.characters.find({ \"stats.dexterity\": { $type: \"int\" } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f35"),
+        "name": "Guts",
+        "role": "Black Swordsman",
+        "age": 27,
+        "affiliations": [ "Band of the Hawk", "Wyald’s Raiders" ],
+        "hp": 850,
+        "stats": { "strength": 95, "dexterity": 85, "will": 90 },
+        "items": [ "Dragonslayer", "Mechanical Arm" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f37"),
+        "name": "Casca",
+        "role": "Captain",
+        "age": 24,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 600,
+        "stats": { "strength": 70, "dexterity": 80, "will": 85 },
+        "items": [ "Sword", "Shield" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f38"),
+        "name": "Farnese",
+        "role": "Holy Iron Chain Knight",
+        "age": 22,
+        "affiliations": [ "Holy See" ],
+        "hp": 500,
+        "stats": { "strength": 65, "dexterity": 75, "will": 80 },
+        "items": [ "Flail", "Chainmail Armor" ]
+      }
+    ]
+  },
+  {
+    operator: "$regex",
+    purpose: "Match string fields against a regular‐expression pattern (case‐sensitive by default).",
+    syntax: "db.characters.find({ name: { $regex: /^G/ } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f35"),
+        "name": "Guts",
+        "role": "Black Swordsman",
+        "age": 27,
+        "affiliations": [ "Band of the Hawk", "Wyald’s Raiders" ],
+        "hp": 850,
+        "stats": { "strength": 95, "dexterity": 85, "will": 90 },
+        "items": [ "Dragonslayer", "Mechanical Arm" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      }
+    ]
+  },
+  {
+    operator: "$expr",
+    purpose: "Use aggregation‐style expressions (e.g. `$add`, `$gt`) inside `find()` to evaluate a computed condition per document.",
+    syntax: "db.characters.find({ $expr: { $gt: [ { $add: [ \"$stats.strength\", \"$stats.dexterity\" ] }, 170 ] } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f35"),
+        "name": "Guts",
+        "role": "Black Swordsman",
+        "age": 27,
+        "affiliations": [ "Band of the Hawk", "Wyald’s Raiders" ],
+        "hp": 850,
+        "stats": { "strength": 95, "dexterity": 85, "will": 90 },
+        "items": [ "Dragonslayer", "Mechanical Arm" ]
+      }
+    ]
+  },
+  {
+    operator: "$mod",
+    purpose: "Match numeric fields where `field % divisor == remainder`.",
+    syntax: "db.characters.find({ hp: { $mod: [ 100, 0 ] } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f37"),
+        "name": "Casca",
+        "role": "Captain",
+        "age": 24,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 600,
+        "stats": { "strength": 70, "dexterity": 80, "will": 85 },
+        "items": [ "Sword", "Shield" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f38"),
+        "name": "Farnese",
+        "role": "Holy Iron Chain Knight",
+        "age": 22,
+        "affiliations": [ "Holy See" ],
+        "hp": 500,
+        "stats": { "strength": 65, "dexterity": 75, "will": 80 },
+        "items": [ "Flail", "Chainmail Armor" ]
+      }
+    ]
+  },
+  {
+    operator: "$text",
+    purpose: "Perform a text‐index query. Returns documents where the indexed field’s text contains the search term.",
+    syntax: "// First run once: db.characters.createIndex({ role: \"text\" })\n" +
+            "db.characters.find({ $text: { $search: \"Knight\" } }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f38"),
+        "name": "Farnese",
+        "role": "Holy Iron Chain Knight",
+        "age": 22,
+        "affiliations": [ "Holy See" ],
+        "hp": 500,
+        "stats": { "strength": 65, "dexterity": 75, "will": 80 },
+        "items": [ "Flail", "Chainmail Armor" ]
+      }
+    ]
+  },
+  {
+    operator: "$where",
+    purpose: "Run a custom JavaScript expression per document; return those for which it evaluates to true.",
+    syntax: "db.characters.find({ $where: \"this.age * this.stats.will > 2000\" }).pretty()",
+    exampleOutput: [
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f35"),
+        "name": "Guts",
+        "role": "Black Swordsman",
+        "age": 27,
+        "affiliations": [ "Band of the Hawk", "Wyald’s Raiders" ],
+        "hp": 850,
+        "stats": { "strength": 95, "dexterity": 85, "will": 90 },
+        "items": [ "Dragonslayer", "Mechanical Arm" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f36"),
+        "name": "Griffith",
+        "role": "Falcon of Light",
+        "age": 23,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 700,
+        "stats": { "strength": 75, "dexterity": 90, "will": 99 },
+        "items": [ "Behelit", "Helmet" ]
+      },
+      {
+        "_id": ObjectId("6845f63ba0a2074a82c59f37"),
+        "name": "Casca",
+        "role": "Captain",
+        "age": 24,
+        "affiliations": [ "Band of the Hawk" ],
+        "hp": 600,
+        "stats": { "strength": 70, "dexterity": 80, "will": 85 },
+        "items": [ "Sword", "Shield" ]
+      }
+    ]
+  }
+])

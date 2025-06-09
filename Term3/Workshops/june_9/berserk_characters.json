@@ -1,0 +1,38 @@
+db.characters.insertMany([
+  {
+    name: "Guts",
+    role: "Black Swordsman",
+    age: 27,
+    affiliations: [ "Band of the Hawk", "Wyald’s Raiders" ],
+    hp: 850,
+    stats: { strength: 95, dexterity: 85, will: 90 },
+    items: [ "Dragonslayer", "Mechanical Arm" ]
+  },
+  {
+    name: "Griffith",
+    role: "Falcon of Light",
+    age: 23,
+    affiliations: [ "Band of the Hawk" ],
+    hp: 700,
+    stats: { strength: 75, dexterity: 90, will: 99 },
+    items: [ "Behelit", "Helmet" ]
+  },
+  {
+    name: "Casca",
+    role: "Captain",
+    age: 24,
+    affiliations: [ "Band of the Hawk" ],
+    hp: 600,
+    stats: { strength: 70, dexterity: 80, will: 85 },
+    items: [ "Sword", "Shield" ]
+  },
+  {
+    name: "Farnese",
+    role: "Holy Iron Chain Knight",
+    age: 22,
+    affiliations: [ "Holy See" ],
+    hp: 500,
+    stats: { strength: 65, dexterity: 75, will: 80 },
+    items: [ "Flail", "Chainmail Armor" ]
+  }
+])
